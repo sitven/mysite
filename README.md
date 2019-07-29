@@ -54,3 +54,5 @@ pip install virtualenv 虚拟环境<br>
 # 第9课<br>
 模板嵌套与通用模板引用(base.html)<br>
 # 第10课<br>
+通过css美化首页,设置css文件全局变量<br>
+# 第11课<br>
