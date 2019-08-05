@@ -56,3 +56,9 @@ pip install virtualenv 虚拟环境<br>
 # 第10课<br>
 通过css美化首页,设置css文件全局变量<br>
 # 第11课<br>
+CSS框架协助前端布局<br>
+引入bootstrap-3.3.7框架， file => static/bootstrap-3.3.7<br>
+引入jquery-1.12.4.min.js 和 优化导航栏样式与大小格局<br>
+# 第12课<br>
+Bootstrap响应式布局<br>
+
