@@ -16,7 +16,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{% block blog_list_title %}博客列表 (一共有{{page_of_blogs.paginator.count}}篇博客) {% endblock %}</div>
                     <div class="panel-body">
-                        {% for blog in page_of_blogs.object_list %}
+                        {% for blog in blogs %}
                             <div class="blog">
                                 <h3><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h3>
                                 <p class="blog-info">
@@ -44,7 +44,7 @@
                                 <span aria-hidden="true">&laquo;</span>
                             {% endif %}
                         </li>
-                        {# 全部页码 #}}
+                        {# 全部页码 #}
                         {% for page_num in page_of_blogs.paginator.page_range %}
                             <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
                         {% endfor %}
