@@ -44,7 +44,7 @@ pip install virtualenv 虚拟环境<br>
 过滤器和字符截取的使用<br>
 模板嵌套与通用模板引用(base.html)<br>
 通过css美化首页,设置css文件全局变量<br>
-# 学习与持续更新中
+# 学习与持续更新中...
 # 2019年8月8号  CSS框架协助前端布局<br>
 引入bootstrap-3.3.7框架， file => static/bootstrap-3.3.7<br>
 引入jquery-1.12.4.min.js 和 优化导航栏样式与大小格局<br>
