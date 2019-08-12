@@ -76,3 +76,23 @@ def blog_detail(request, blog_pk):
     response = render_to_response('blog/blog_detail.html', context)
     response.set_cookie('blog_%s_readed' % blog_pk, 'true')
     return response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
