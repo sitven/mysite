@@ -67,3 +67,6 @@ pip install virtualenv 虚拟环境<br>
 1.添加今天、昨天和7天热门博客<br>
 2.设置7天热门博客过期时间为3600缓存<br>
 创建缓存表：python manage.py createcachetable<br>
+#### 2019-08-20 评论功能设计和用户登录<br>
+1.创建评论库：python manage.py startapp comment<br>
+2.新增评论功能,设置评论门槛,评论增加登录方法<br>
