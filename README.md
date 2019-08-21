@@ -70,3 +70,6 @@ pip install virtualenv 虚拟环境<br>
 #### 2019-08-20 评论功能设计和用户登录<br>
 1.创建评论库：python manage.py startapp comment<br>
 2.新增评论功能,设置评论门槛,评论增加登录方法<br>
+#### 2019-08-21 html表单提交评论<br>
+1.添加评论(评论对象、内容、时间和作者)<br>
+2.无权限评论或者登录异常跳转error.html页并设置返回按钮<br>
