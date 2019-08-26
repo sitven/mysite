@@ -20,6 +20,7 @@ mysite》article<br>
             python36 manage.py migrate                  # 应用<br>
 ### 2019-07-31 虚拟环境运行django项目<br>
 pip install virtualenv 虚拟环境<br>
+pip install django-ckeditor 安装依赖包<br>
 创建虚拟环境： virtualenv <mysite_env><br>
 启动虚拟环境： Scripts\activate<br>
 退出虚拟环境： deactivate<br>
