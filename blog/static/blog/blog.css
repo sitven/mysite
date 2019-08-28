@@ -45,6 +45,10 @@ h3.comment-area-title {
     padding-bottom: 0.4em;
 }
 
+div.django-ckeditor-widget {
+    width: 100%;
+}
+
 
 
 
