@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ao3=6&*l955p6z30i&^b3e*$87u6v7po!9m0#^$h&_#ff27-5d'
+SECRET_KEY = '9qgh-%y9tr2*6cxvnzf8(u8a!&&&ea_-@-a18gooqunwozt)c$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'read_statistics',
     'comment',
     'likes',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'user.context_processors.login_modal_form',
             ],
         },
     },
@@ -124,7 +126,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -138,26 +139,26 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CKEDITOR_UPLOAD_PATH = 'upload/'
 
 CKEDITOR_CONFIGS = {
-    "default": {},
-    "comment_ckeditor": {
-        "toolbar": "custom",
-        "toolbar_custom": [
-            ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript"],
-            ["TextColor", "BGColor", "RemoveFormat"],
-            ["NumberedList", "BulletedList"],
-            ["Link", "Unlink"],
-            ["Smiley", "SpecialChar", "Blockquote"],
+    'default': {},
+    'comment_ckeditor': {
+        'toolbar': 'custom',
+        'toolbar_custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
+            ["TextColor", "BGColor", 'RemoveFormat'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink'],
+            ["Smiley", "SpecialChar", 'Blockquote'],
         ],
-        "width": "auto",
-        "height": "180",
-        "tabSpaces": 4,
-        "removePlugins": "elementspath",
-        "resize_enabled": False,
+        'width': 'auto',
+        'height': '180',
+        'tabSpaces': 4,
+        'removePlugins': 'elementspath',
+        'resize_enabled': False,
     }
 }
 
 # 自定义参数
-EACH_PAGE_BLOGS_NUMBER = 7      # 每页博客数量
+EACH_PAGE_BLOGS_NUMBER = 7
 
 # 缓存设置
 CACHES = {
