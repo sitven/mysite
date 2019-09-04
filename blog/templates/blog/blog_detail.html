@@ -4,6 +4,8 @@
 
 {% load staticfiles %}
 {% load comment_tags %}
+{% load likes_tags %}
+
 {% block header_extends %}
     <link rel="stylesheet" href="{% static 'blog/blog.css' %}">
     <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
@@ -24,6 +26,11 @@
                     <li>评论({% get_comment_count blog %})</li>
                 </ul>
                 <div class="blog-content">{{ blog.content|safe }}</div>
+                <div class="like" onclick="likeChange(this, '{% get_content_type blog %}', {{ blog.pk }})">
+                    <span class="glyphicon glyphicon-thumbs-up {% get_like_status blog %}"></span>
+                    <span class="liked-num">{% get_like_count blog %}</span>
+                    <span>喜欢</span>
+                </div>
                 <div class="blog-more">
                     <p>上一篇：
                         {% if previous_blog %}
@@ -79,6 +86,10 @@
                                 <div id="comment_{{ comment.pk }}">
                                     {{ comment.text|safe }}
                                 </div>
+                                <div class="like" onclick="likeChange(this, '{% get_content_type comment %}', {{ comment.pk }})">
+                                    <span class="glyphicon glyphicon-thumbs-up {% get_like_status comment %}"></span>
+                                    <span class="liked-num">{% get_like_count comment %}</span>
+                                </div>
                                 <a href="javascript:reply({{ comment.pk }});">回复</a>
 
 
@@ -90,6 +101,10 @@
                                         <span>{{ reply.reply_to.username }}：</span>
                                         <div id="comment_{{ reply.pk }}">
                                             {{ reply.text|safe }}
+                                        </div>
+                                        <div class="like" onclick="likeChange(this, '{% get_content_type reply %}', {{ reply.pk }})">
+                                            <span class="glyphicon glyphicon-thumbs-up {% get_like_status reply %}"></span>
+                                            <span class="liked-num">{% get_like_count reply %}</span>
                                         </div>
                                         <a href="javascript:reply({{ reply.pk }});">回复</a>
                                     </div>
@@ -113,6 +128,7 @@
             var html = $("#comment_" + reply_comment_id).html();
             $('#reply_content').html(html);
             $('#reply_content_container').show();
+
             $('html').animate({scrollTop: $('#comment_form').offset().top - 60}, 300, function(){
                 CKEDITOR.instances['id_text'].focus();
             });
@@ -121,14 +137,14 @@
             return ('00' + num).substr(-2);
         }
         function timeFormat(timestamp){
-        var datetime = new Date(timestamp * 1000);
-        var year = datetime.getFullYear();
-        var month = numFormat(datetime.getMonth() + 1);
-        var day = numFormat(datetime.getDate());
-        var hour = numFormat(datetime.getHours());
-        var minute = numFormat(datetime.getMinutes());
-        var second = numFormat(datetime.getSeconds());
-        return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+            var datetime = new Date(timestamp * 1000);
+            var year = datetime.getFullYear();
+            var month = numFormat(datetime.getMonth() + 1);
+            var day = numFormat(datetime.getDate());
+            var hour = numFormat(datetime.getHours());
+            var minute = numFormat(datetime.getMinutes());
+            var second = numFormat(datetime.getSeconds());
+            return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
         }
         $("#comment_form").submit(function(){
             // 判断是否为空
@@ -137,8 +153,10 @@
                 $("#comment_error").text('评论内容不能为空');
                 return false;
             }
+
             // 更新数据到textarea
             CKEDITOR.instances['id_text'].updateElement();
+
             // 异步提交
             $.ajax({
                 url: "{% url 'update_comment' %}",
@@ -175,6 +193,38 @@
             });
             return false;
         });
-
+        function likeChange(obj, content_type, object_id){
+            var is_like = obj.getElementsByClassName('active').length == 0
+            $.ajax({
+                url: "{% url 'like_change' %}",
+                type: 'GET',
+                data: {
+                    content_type: content_type,
+                    object_id: object_id,
+                    is_like: is_like
+                },
+                cache: false,
+                success: function(data){
+                    console.log(data)
+                    if(data['status']=='SUCCESS'){
+                        // 更新点赞状态
+                        var element = $(obj.getElementsByClassName('glyphicon'));
+                        if(is_like){
+                            element.addClass('active');
+                        }else{
+                            element.removeClass('active');
+                        }
+                        // 更新点赞数量
+                        var liked_num = $(obj.getElementsByClassName('liked-num'));
+                        liked_num.text(data['liked_num']);
+                    }else{
+                        alert(data['message']);
+                    }
+                },
+                error: function(xhr){
+                    console.log(xhr)
+                }
+            });
+        }
     </script>
 {% endblock %}
