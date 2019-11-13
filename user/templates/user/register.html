@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block title %}我的网站|注册{% endblock %}
+
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'user.css' %}">
+{% endblock %}
 {% block nav_home_active %}active{% endblock %}
+
 {% block content %}
-    <div class="containter">
+    <div id="register" class="containter">
         <div class="row">
             <div class="col-xs-4 col-xs-offset-4">
                 {% if not user.is_authenticated %}

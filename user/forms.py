@@ -2,7 +2,6 @@ from django import forms
 from django.contrib import auth
 from django.contrib.auth.models import User
 
-
 class LoginForm(forms.Form):
     username_or_email = forms.CharField(
         label='用户名或邮箱', 
@@ -27,7 +26,6 @@ class LoginForm(forms.Form):
         else:
             self.cleaned_data['user'] = user
         return self.cleaned_data
-
 
 class RegForm(forms.Form):
     username = forms.CharField(
@@ -96,7 +94,6 @@ class RegForm(forms.Form):
             raise forms.ValidationError('验证码不能为空')
         return verification_code
 
-
 class ChangeNicknameForm(forms.Form):
     nickname_new = forms.CharField(
         label='新的昵称', 
@@ -124,7 +121,6 @@ class ChangeNicknameForm(forms.Form):
         if nickname_new == '':
             raise forms.ValidationError("新的昵称不能为空")
         return nickname_new
-
 
 class BindEmailForm(forms.Form):
     email = forms.EmailField(
@@ -176,7 +172,6 @@ class BindEmailForm(forms.Form):
         if verification_code == '':
             raise forms.ValidationError('验证码不能为空')
         return verification_code
-
 
 class ChangePasswordForm(forms.Form):
     old_password = forms.CharField(

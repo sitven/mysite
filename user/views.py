@@ -138,8 +138,8 @@ def send_verification_code(request):
             # 发送邮件
             send_mail(
                 '绑定邮箱',
-                '您的邮箱验证码：%s' % code,
-                'xxxxxx@qq.com',
+                '你的验证码：%s' % code,
+                '1598667718@qq.com',
                 [email],
                 fail_silently=False,
             )
