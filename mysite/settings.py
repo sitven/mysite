@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+
+'''原配置文件 先保存 有问题在拿出来用'''
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +27,7 @@ SECRET_KEY = '9qgh-%y9tr2*6cxvnzf8(u8a!&&&ea_-@-a18gooqunwozt)c$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -82,14 +84,24 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mysite_db',
+        'USER': 'xxx',
+        'PASSWORD': 'xxx',
+        'HOST': 'www.sitven.cn',
+        'PORT': '3306',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -126,6 +138,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -139,14 +152,30 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CKEDITOR_UPLOAD_PATH = 'upload/'
 
 CKEDITOR_CONFIGS = {
-    'default': {},
+    'default': {
+         'toolbar': (
+             ['div', 'Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
+             ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+             ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat', '-', 'Maximize', 'ShowBlocks', '-',"CodeSnippet", 'Subscript', 'Superscript'],
+             ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+             ['Bold', 'Italic', 'Underline', 'Strike', '-'],
+             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
+             ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+             ['Link', 'Unlink', 'Anchor'],
+             ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+             ['Styles', 'Format', 'Font', 'FontSize'],
+             ['TextColor', 'BGColor'],
+         ),
+        'extraPlugins': 'codesnippet',
+    },
+
     'comment_ckeditor': {
         'toolbar': 'custom',
         'toolbar_custom': [
             ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
             ["TextColor", "BGColor", 'RemoveFormat'],
             ['NumberedList', 'BulletedList'],
-            ['Link', 'Unlink'],
+            ['Link', 'Unlink', ],
             ["Smiley", "SpecialChar", 'Blockquote'],
         ],
         'width': 'auto',
@@ -173,8 +202,8 @@ CACHES = {
 # https://docs.djangoproject.com/en/2.0/topics/email/
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.qq.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'xxxxxx@qq.com'
-EMAIL_HOST_PASSWORD = 'xxxxxx'  # 授权码
-EMAIL_SUBJECT_PREFIX = '[李文君的博客] '
+EMAIL_PORT = 465
+EMAIL_HOST_USER = '1598667718@qq.com'
+EMAIL_HOST_PASSWORD = 'xxx'  # 授权码
+EMAIL_SUBJECT_PREFIX = '[李文君的博客网站] '
 EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)

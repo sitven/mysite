@@ -19,7 +19,6 @@ def get_7_days_hot_blogs():
                 .order_by('-read_num_sum')
     return blogs[:7]
 
-
 def home(request):
     blog_content_type = ContentType.objects.get_for_model(Blog)
     dates, read_nums = get_seven_days_read_data(blog_content_type)

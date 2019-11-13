@@ -1,17 +1,14 @@
 ul.blog-types {
     list-style-type: none;
 }
-
 div.blog:not(:last-child){
     margin-bottom: 2em;
     padding-bottom: 1em;
     border-bottom: 1px solid #eee;
 }
-
 div.blog h3 {
     margin-top: 0.5em;
 }
-
 div.blog p.blog-info {
     margin-bottom: 0;
 }
@@ -23,16 +20,13 @@ ul.blog-info-description {
     list-style-type: none;
     margin-bottom: 1em;
 }
-
 ul.blog-info-description li{
     display: inline-block;
     margin-right: 1em;
 }
 div.blog-content{
-    text-indent: 2em;
     margin-bottom: 2em;
 }
-
 div.blog-more {
     margin-top: 1em;
 }
@@ -40,7 +34,6 @@ div.blog-more {
 div.comment-area {
     margin-top: 2em;
 }
-
 h3.comment-area-title {
     border-bottom: 1px solid #ccc;
     padding-bottom: 0.4em;
@@ -55,11 +48,9 @@ div.comment {
     margin-bottom: 0.5em;
     padding-bottom: 0.5em;
 }
-
 div.reply {
     margin-left: 2em;
 }
-
 div#reply_content_container {
     border: 1px solid #d1d1d1;
     border-bottom: none;
@@ -67,7 +58,6 @@ div#reply_content_container {
     overflow: hidden;
     padding: 1em 1em 0.5em;
 }
-
 p#reply_title {
     border-bottom: 1px dashed #ccc;
     padding-bottom: 0.5em;
@@ -84,3 +74,19 @@ div.like .active{
     color: #f22;
 }
 
+
+button#rewardButton {
+    display: inline-block;
+    width: 80px;
+    height: 35px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 500;
+    font-style: normal;
+    font-variant: normal;
+    font-stretch: normal;
+    font-size: 20px;
+    font-family: "Microsoft Yahei";
+    background: #e44e4e;
+    border: none;
+}

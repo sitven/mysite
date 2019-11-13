@@ -31,7 +31,7 @@ def get_blog_list_common_data(request, blogs_all_list):
     blog_dates = Blog.objects.dates('created_time', 'month', order="DESC")
     blog_dates_dict = {}
     for blog_date in blog_dates:
-        blog_count = Blog.objects.filter(created_time__year=blog_date.year,
+        blog_count = Blog.objects.filter(created_time__year=blog_date.year, 
                                          created_time__month=blog_date.month).count()
         blog_dates_dict[blog_date] = blog_count
 
@@ -70,9 +70,15 @@ def blog_detail(request, blog_pk):
     read_cookie_key = read_statistics_once_read(request, blog)
 
     context = {}
+    # 博客分类列表
+    context['blog_types'] = BlogType.objects.annotate(blog_count=Count('blog'))
+    # 博客归档列表
+    context['blog_dates'] = get_blog_list_common_data(request, Blog.objects.all())["blog_dates"]
     context['previous_blog'] = Blog.objects.filter(created_time__gt=blog.created_time).last()
     context['next_blog'] = Blog.objects.filter(created_time__lt=blog.created_time).first()
     context['blog'] = blog
-    response = render(request, 'blog/blog_detail.html', context) # 响应
-    response.set_cookie(read_cookie_key, 'true') # 阅读cookie标记
+    # 响应
+    response = render(request, 'blog/blog_detail.html', context)
+    # 阅读cookie标记
+    response.set_cookie(read_cookie_key, 'true')
     return response

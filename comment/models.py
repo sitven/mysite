@@ -26,6 +26,7 @@ class SendMail(threading.Thread):
             html_message=self.text
         )
 
+
 # Create your models here.
 class Comment(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)

@@ -12,13 +12,11 @@ def ErrorResponse(code, message):
     data['message'] = message
     return JsonResponse(data)
 
-
 def SuccessResponse(liked_num):
     data = {}
     data['status'] = 'SUCCESS'
     data['liked_num'] = liked_num
     return JsonResponse(data)
-
 
 def like_change(request):
     # 获取数据
